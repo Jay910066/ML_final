@@ -13,7 +13,7 @@ import os
 MAX_SEQ_LEN = 1000
 BATCH_SIZE = 64
 EPOCHS = 40
-LEARNING_RATE = 1e-3
+LEARNING_RATE = 1e-4
 WEIGHT_DECAY = 1e-4
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -85,10 +85,6 @@ class Pure_DNA_ResNet(nn.Module):
         self.res2 = ResidualBlock1D(128, 256, 5)
         self.res3 = ResidualBlock1D(256, 512, 3)
 
-        # 雙重池化 (Dual Pooling)
-        self.avg_pool = nn.AdaptiveAvgPool1d(1)
-        self.max_pool = nn.AdaptiveMaxPool1d(1)
-
         # 分類器 (輸入維度 512*2 = 1024)
         self.classifier = nn.Sequential(
             nn.Linear(1024, 512),
@@ -103,8 +99,9 @@ class Pure_DNA_ResNet(nn.Module):
         x = self.res2(x)
         x = self.res3(x)
 
-        avg_f = self.avg_pool(x).squeeze(-1)
-        max_f = self.max_pool(x).squeeze(-1)
+        avg_f = torch.mean(x, dim=-1)  # 相當於 AdaptiveAvgPool1d(1)
+        max_f = torch.max(x, dim=-1)[0]  # 相當於 AdaptiveMaxPool1d(1)
+
         cnn_feat = torch.cat([avg_f, max_f], dim=1)
 
         return self.classifier(cnn_feat)
@@ -207,6 +204,9 @@ def main():
         for batch in test_loader:
             logits = model(batch['seq'].to(DEVICE))
             all_preds.extend(torch.argmax(logits, dim=1).cpu().numpy())
+
+    dummy_seq = torch.randint(0, 5, (1, 1000)).to(DEVICE)
+    dummy_kmer = torch.randn(1, 4096).to(DEVICE)
 
     print("\n--- 實驗結果 (Pure CNN) ---")
     acc = accuracy_score(test_df['label'], all_preds)
