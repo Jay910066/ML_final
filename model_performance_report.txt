@@ -1,18 +1,18 @@
 ========== [Multi-scale 1D CNN + K-mer (K=6)] ==========
-🏆 Accuracy: 0.9804
+🏆 Accuracy: 0.9792
 
                    precision    recall  f1-score   support
 
 BIOLOGICAL_REGION       0.99      0.99      0.99      2651
-            OTHER       0.96      0.98      0.97       133
-   PROTEIN_CODING       0.99      0.88      0.93       184
-           PSEUDO       0.98      0.99      0.98      3800
+            OTHER       0.98      0.98      0.98       133
+   PROTEIN_CODING       0.95      0.87      0.91       184
+           PSEUDO       0.98      0.98      0.98      3800
             ncRNA       0.97      0.96      0.97       894
-             rRNA       0.97      1.00      0.99        72
+             rRNA       0.96      0.99      0.97        72
             scRNA       0.00      0.00      0.00         1
-            snRNA       0.79      0.87      0.82        38
-           snoRNA       0.97      0.97      0.97       405
-             tRNA       0.99      0.98      0.98       148
+            snRNA       0.77      0.89      0.83        38
+           snoRNA       0.96      0.98      0.97       405
+             tRNA       1.00      0.99      0.99       148
 
          accuracy                           0.98      8326
         macro avg       0.86      0.86      0.86      8326
