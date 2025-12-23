@@ -1,0 +1,33 @@
+Experiment: Baseline (Full Model)
+==================================================
+使用參數 (Used Parameters):
+- name: Baseline (Full Model)
+- use_shortcut: True
+- pooling_mode: fusion
+- use_cleaning: True
+- use_weights: True
+
+調整變量 (Adjusted Variables):
+本組核心設定為: Shortcut=True, Pooling=fusion, Cleaning=True, Weights=True
+
+Classification Report:
+                   precision    recall  f1-score   support
+
+BIOLOGICAL_REGION       0.97      0.99      0.98      2651
+            OTHER       0.96      1.00      0.98       133
+   PROTEIN_CODING       0.97      0.84      0.90       184
+           PSEUDO       0.98      0.98      0.98      3800
+            ncRNA       0.99      0.93      0.95       894
+             rRNA       0.94      1.00      0.97        72
+            scRNA       1.00      1.00      1.00         1
+            snRNA       0.71      0.89      0.79        38
+           snoRNA       0.97      0.98      0.98       405
+             tRNA       0.97      0.98      0.97       148
+
+         accuracy                           0.98      8326
+        macro avg       0.95      0.96      0.95      8326
+     weighted avg       0.98      0.98      0.98      8326
+
+==================================================
+Final Accuracy: 0.9751
+Final Macro F1: 0.9506

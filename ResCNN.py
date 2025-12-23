@@ -7,12 +7,10 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report
 import os
 
-# ==========================================
-# 核心參數 (Pure CNN 消融實驗設定)
-# ==========================================
+# 核心參數
 MAX_SEQ_LEN = 1000
 BATCH_SIZE = 64
-EPOCHS = 40
+EPOCHS = 1
 LEARNING_RATE = 1e-4
 WEIGHT_DECAY = 1e-4
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -26,7 +24,7 @@ class EarlyStopping:
         self.counter = 0
         self.best_score = None
         self.early_stop = False
-        self.val_loss_min = np.inf  # NumPy 2.0+ 兼容
+        self.val_loss_min = np.inf
         self.path = path
 
     def __call__(self, val_loss, model):
@@ -74,8 +72,8 @@ class ResidualBlock1D(nn.Module):
         return torch.relu(self.conv(x) + self.shortcut(x))
 
 
-# --- 步驟 2: 純 CNN 模型架構 ---
-class Pure_DNA_ResNet(nn.Module):
+# --- 步驟 2: Res CNN 模型架構 ---
+class DNA_ResNet(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
         self.embedding = nn.Embedding(5, 64, padding_idx=0)
@@ -157,7 +155,7 @@ def main():
     val_loader = DataLoader(PureCDataset(val_df), batch_size=BATCH_SIZE)
     test_loader = DataLoader(PureCDataset(test_df), batch_size=BATCH_SIZE)
 
-    model = Pure_DNA_ResNet(len(le.classes_)).to(DEVICE)
+    model = DNA_ResNet(len(le.classes_)).to(DEVICE)
     optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
     criterion = nn.CrossEntropyLoss(weight=class_weights)
 
@@ -165,7 +163,7 @@ def main():
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=EPOCHS)
     early_stopping = EarlyStopping(patience=5, path='best_pure_cnn_model.pt')
 
-    print(f"開始純 CNN 訓練 ({DEVICE})")
+    print(f"開始 CNN 訓練 ({DEVICE})")
 
     for epoch in range(EPOCHS):
         model.train()
@@ -208,7 +206,7 @@ def main():
     dummy_seq = torch.randint(0, 5, (1, 1000)).to(DEVICE)
     dummy_kmer = torch.randn(1, 4096).to(DEVICE)
 
-    print("\n--- 實驗結果 (Pure CNN) ---")
+    print("\n--- 實驗結果 (Res CNN) ---")
     acc = accuracy_score(test_df['label'], all_preds)
     report_str = classification_report(test_df['label'], all_preds, target_names=le.classes_)
     print(f"\nAccuracy: {acc:.4f}")

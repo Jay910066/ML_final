@@ -1,19 +1,19 @@
 ========== [ResCNN] ==========
-Accuracy: 0.9838
+Accuracy: 0.7854
 
                    precision    recall  f1-score   support
 
-BIOLOGICAL_REGION       0.99      0.99      0.99      2651
-            OTHER       0.96      1.00      0.98       133
-   PROTEIN_CODING       1.00      0.87      0.93       184
-           PSEUDO       0.98      0.99      0.99      3800
-            ncRNA       0.98      0.97      0.97       894
-             rRNA       0.97      0.99      0.98        72
-            scRNA       1.00      1.00      1.00         1
-            snRNA       0.85      0.89      0.87        38
-           snoRNA       0.96      1.00      0.98       405
-             tRNA       0.99      0.98      0.99       148
+BIOLOGICAL_REGION       0.89      0.83      0.86      2651
+            OTHER       0.57      0.77      0.66       133
+   PROTEIN_CODING       0.25      0.70      0.37       184
+           PSEUDO       0.86      0.78      0.82      3800
+            ncRNA       0.62      0.64      0.63       894
+             rRNA       0.94      1.00      0.97        72
+            scRNA       0.00      0.00      0.00         1
+            snRNA       0.48      0.53      0.50        38
+           snoRNA       0.64      0.77      0.70       405
+             tRNA       0.79      0.97      0.87       148
 
-         accuracy                           0.98      8326
-        macro avg       0.97      0.97      0.97      8326
-     weighted avg       0.98      0.98      0.98      8326
+         accuracy                           0.79      8326
+        macro avg       0.60      0.70      0.64      8326
+     weighted avg       0.81      0.79      0.80      8326

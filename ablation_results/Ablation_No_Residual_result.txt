@@ -1,0 +1,33 @@
+Experiment: Ablation: No Residual
+==================================================
+使用參數 (Used Parameters):
+- name: Ablation: No Residual
+- use_shortcut: False
+- pooling_mode: fusion
+- use_cleaning: True
+- use_weights: True
+
+調整變量 (Adjusted Variables):
+本組核心設定為: Shortcut=False, Pooling=fusion, Cleaning=True, Weights=True
+
+Classification Report:
+                   precision    recall  f1-score   support
+
+BIOLOGICAL_REGION       0.99      0.90      0.94      2651
+            OTHER       0.98      0.92      0.95       133
+   PROTEIN_CODING       0.97      0.78      0.87       184
+           PSEUDO       0.90      0.99      0.94      3800
+            ncRNA       0.98      0.87      0.92       894
+             rRNA       0.96      0.99      0.97        72
+            scRNA       0.00      0.00      0.00         1
+            snRNA       0.86      0.82      0.84        38
+           snoRNA       0.94      0.99      0.96       405
+             tRNA       0.97      0.98      0.98       148
+
+         accuracy                           0.94      8326
+        macro avg       0.85      0.82      0.84      8326
+     weighted avg       0.94      0.94      0.94      8326
+
+==================================================
+Final Accuracy: 0.9399
+Final Macro F1: 0.8370

@@ -1,0 +1,33 @@
+Experiment: Ablation: Single Pooling (Max Only)
+==================================================
+使用參數 (Used Parameters):
+- name: Ablation: Single Pooling (Max Only)
+- use_shortcut: True
+- pooling_mode: max
+- use_cleaning: True
+- use_weights: True
+
+調整變量 (Adjusted Variables):
+本組核心設定為: Shortcut=True, Pooling=max, Cleaning=True, Weights=True
+
+Classification Report:
+                   precision    recall  f1-score   support
+
+BIOLOGICAL_REGION       0.99      0.97      0.98      2651
+            OTHER       0.93      1.00      0.96       133
+   PROTEIN_CODING       0.67      0.93      0.78       184
+           PSEUDO       0.97      0.97      0.97      3800
+            ncRNA       0.98      0.95      0.96       894
+             rRNA       0.95      1.00      0.97        72
+            scRNA       0.00      0.00      0.00         1
+            snRNA       0.74      0.89      0.81        38
+           snoRNA       0.95      0.98      0.97       405
+             tRNA       0.97      0.98      0.98       148
+
+         accuracy                           0.97      8326
+        macro avg       0.82      0.87      0.84      8326
+     weighted avg       0.97      0.97      0.97      8326
+
+==================================================
+Final Accuracy: 0.9666
+Final Macro F1: 0.8384

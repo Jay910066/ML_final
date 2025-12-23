@@ -1,0 +1,33 @@
+Experiment: Ablation: No Preprocessing
+==================================================
+使用參數 (Used Parameters):
+- name: Ablation: No Preprocessing
+- use_shortcut: True
+- pooling_mode: fusion
+- use_cleaning: False
+- use_weights: True
+
+調整變量 (Adjusted Variables):
+本組核心設定為: Shortcut=True, Pooling=fusion, Cleaning=False, Weights=True
+
+Classification Report:
+                   precision    recall  f1-score   support
+
+BIOLOGICAL_REGION       0.97      1.00      0.98      2651
+            OTHER       0.96      0.98      0.97       133
+   PROTEIN_CODING       0.92      0.87      0.90       184
+           PSEUDO       0.99      0.95      0.97      3800
+            ncRNA       0.97      0.93      0.95       894
+             rRNA       0.96      1.00      0.98        72
+            scRNA       1.00      1.00      1.00         1
+            snRNA       0.54      0.92      0.68        38
+           snoRNA       0.84      1.00      0.91       405
+             tRNA       0.99      0.98      0.99       148
+
+         accuracy                           0.97      8326
+        macro avg       0.91      0.96      0.93      8326
+     weighted avg       0.97      0.97      0.97      8326
+
+==================================================
+Final Accuracy: 0.9660
+Final Macro F1: 0.9327

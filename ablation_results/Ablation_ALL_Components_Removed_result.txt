@@ -1,0 +1,33 @@
+Experiment: Ablation: ALL Components Removed
+==================================================
+使用參數 (Used Parameters):
+- name: Ablation: ALL Components Removed
+- use_shortcut: False
+- pooling_mode: avg
+- use_cleaning: False
+- use_weights: False
+
+調整變量 (Adjusted Variables):
+本組核心設定為: Shortcut=False, Pooling=avg, Cleaning=False, Weights=False
+
+Classification Report:
+                   precision    recall  f1-score   support
+
+BIOLOGICAL_REGION       0.93      0.96      0.94      2651
+            OTHER       1.00      0.01      0.01       133
+   PROTEIN_CODING       1.00      0.03      0.06       184
+           PSEUDO       0.83      1.00      0.91      3800
+            ncRNA       0.92      0.66      0.77       894
+             rRNA       0.99      0.93      0.96        72
+            scRNA       0.00      0.00      0.00         1
+            snRNA       0.00      0.00      0.00        38
+           snoRNA       0.90      0.46      0.61       405
+             tRNA       0.99      0.85      0.92       148
+
+         accuracy                           0.88      8326
+        macro avg       0.76      0.49      0.52      8326
+     weighted avg       0.88      0.88      0.85      8326
+
+==================================================
+Final Accuracy: 0.8757
+Final Macro F1: 0.5171
